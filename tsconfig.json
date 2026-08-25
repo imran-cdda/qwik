@@ -19,7 +19,15 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@qwik/engine": ["./packages/engine/src"],
+      "@qwik/engine/*": ["./packages/engine/src/*"],
+      "@qwik/erm": ["./packages/erm/src"],
+      "@qwik/erm/*": ["./packages/erm/src/*"],
+      "@qwik/crm": ["./packages/crm/src"],
+      "@qwik/crm/*": ["./packages/crm/src/*"],
+      "@qwik/shared": ["./packages/shared/src"],
+      "@qwik/shared/*": ["./packages/shared/src/*"]
     }
   },
   "include": [

@@ -1,0 +1,10 @@
+{
+  "name": "@qwik/crm",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "src/index.ts",
+  "exports": {
+    "./actions": "./src/actions.ts",
+    "./components": "./src/components.tsx"
+  }
+}

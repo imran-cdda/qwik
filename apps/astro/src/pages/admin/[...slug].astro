@@ -1,0 +1,10 @@
+---
+import QwikEngine from '@qwik/engine';
+
+const { slug } = Astro.params;
+// Astro [...slug] gives us "erm/financial" as a string, split to get array
+const slugArray = slug ? slug.split('/') : [];
+const params = { slug: slugArray };
+---
+
+<QwikEngine params={params} />

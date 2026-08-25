@@ -1,0 +1,26 @@
+{
+  "name": "@qwik/astro-app",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/node": "^11.0.0",
+    "@astrojs/react": "^6.0.4",
+    "@qwik/shared": "file:../../packages/shared",
+    "@qwik/engine": "file:../../packages/engine",
+    "@qwik/erm": "file:../../packages/erm",
+    "@qwik/crm": "file:../../packages/crm",
+    "astro": "^7.2.6",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "^5"
+  }
+}

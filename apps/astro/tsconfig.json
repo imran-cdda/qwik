@@ -1,0 +1,21 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [
+    ".astro/types.d.ts",
+    "**/*"
+  ],
+  "exclude": [
+    "dist"
+  ],
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "baseUrl": ".",
+    "paths": {
+      "@qwik/engine": ["../../packages/engine/src"],
+      "@qwik/erm": ["../../packages/erm/src"],
+      "@qwik/crm": ["../../packages/crm/src"],
+      "@qwik/shared": ["../../packages/shared/src"]
+    }
+  }
+}

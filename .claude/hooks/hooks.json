@@ -1,0 +1,20 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "name": "console-log-check",
+        "description": "Check for console.log in code before stopping",
+        "when": "stop",
+        "prompt": "Search for any console.log statements in the modified files. If found, warn the user."
+      }
+    ],
+    "PostToolUse": [
+      {
+        "name": "test-after-edit",
+        "description": "Suggest running tests after code changes",
+        "when": "Edit or Write",
+        "prompt": "After significant code changes, remind to run tests to verify the change works correctly."
+      }
+    ]
+  }
+}

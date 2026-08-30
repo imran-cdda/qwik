@@ -1,0 +1,17 @@
+{
+  "name": "@qwik/monorepo-be",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun src/index.ts",
+    "build": "bun build src/index.ts --outdir dist --target bun",
+    "start": "bun src/index.ts"
+  },
+  "dependencies": {
+    "hono": "^4.7.4"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.0"
+  }
+}

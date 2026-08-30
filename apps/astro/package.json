@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "APP_BASE_URL=http://localhost:4321 astro dev",
+    "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview"
   },

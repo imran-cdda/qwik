@@ -1,43 +1,41 @@
 # Backend Patterns
 
-## API Routes (Host-specific)
+## Hono Backend API
 
-Each host has its own API routes:
-- Astro: `apps/astro/src/pages/api/*`
-- Next.js: `apps/next/src/app/api/*`
+All API routes are centralized in the Hono backend at `apps/be/src/routes/`.
 
-## Astro API Routes
-
-### Basic Endpoint
-```typescript
-// apps/astro/src/pages/api/users.ts
-import type { APIRoute } from 'astro';
-
-export const GET: APIRoute = async ({ params, request }) => {
-  return new Response(JSON.stringify({ users: [] }), {
-    status: 200,
-    headers: { 'Content-Type': 'application/json' }
-  });
-};
+### Running the Backend
+```bash
+bun run dev:be        # Dev server on port 3001
+bun run build:be      # Production build
+bun run start:be      # Start production
 ```
 
-### With Request Handling
+### API Endpoints
+
+| Module | Endpoint | Methods |
+|--------|----------|---------|
+| CRM | `/api/crm` | GET, POST, PUT, DELETE |
+| Financial | `/api/erm/financial` | GET, POST, PUT, DELETE |
+| HR | `/api/erm/hr` | GET, POST, PUT, DELETE |
+| Inventory | `/api/erm/inventory` | GET, POST, PUT, DELETE |
+
+### Hono Route Example
 ```typescript
-export const POST: APIRoute = async ({ request }) => {
-  try {
-    const data = await request.json();
-    // Process data
-    return new Response(JSON.stringify({ success: true }), {
-      status: 201,
-      headers: { 'Content-Type': 'application/json' }
-    });
-  } catch (error) {
-    return new Response(JSON.stringify({ error: 'Invalid JSON' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' }
-    });
+// apps/be/src/routes/crm.ts
+import { Hono } from 'hono';
+
+export const customersRoute = new Hono();
+
+customersRoute.get('/', (c) => {
+  const id = c.req.query('id');
+  if (id) {
+    const customer = customers.find(c => c.id === id);
+    if (!customer) return c.json({ error: 'Not found' }, 404);
+    return c.json(customer);
   }
-};
+  return c.json(customers);
+});
 ```
 
 ## API Client (Server-side)
@@ -47,7 +45,7 @@ All API calls from packages must use `createApiClient()` from `@qwik/monorepo/sh
 import { createApiClient } from '@qwik/monorepo/shared';
 
 const api = createApiClient({
-  baseUrl: process.env.APP_BASE_URL || 'http://localhost:4321',
+  baseUrl: process.env.APP_BASE_URL || 'http://localhost:3001',
   apiKey: process.env.API_KEY,
 });
 

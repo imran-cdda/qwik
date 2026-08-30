@@ -11,7 +11,13 @@ export function createApiClient(config: ApiClientConfig = {}) {
     let url = endpoint;
     if (!endpoint.startsWith('http')) {
       // Construct absolute URL for server-side calls
-      const baseUrl = process.env.APP_BASE_URL || process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+      // Default to Hono backend on port 3001
+      // Use import.meta.env for Astro/Next.js compatibility
+      const baseUrl =
+        (typeof import.meta !== 'undefined' && (import.meta as { env?: Record<string, string> }).env?.APP_BASE_URL) ||
+        process.env.APP_BASE_URL ||
+        process.env.NEXT_PUBLIC_APP_URL ||
+        'http://localhost:3001';
       const protocol = baseUrl.startsWith('https') ? 'https' : 'http';
       const host = baseUrl.replace(/^https?:\/\//, '');
       url = `${protocol}://${host}${endpoint}`;

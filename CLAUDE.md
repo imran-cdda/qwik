@@ -25,18 +25,25 @@ qwik/                           # Root workspace (@qwik/monorepo)
 │       └── index.ts           # TypeScript interfaces
 │       └── api-client.ts      # Server-side HTTP client
 └── apps/
+    ├── be/                    # Hono backend API (port 3001)
+    │   └── src/
+    │       ├── index.ts       # Hono app entry
+    │       └── routes/        # API route handlers
+    │           ├── crm.ts
+    │           └── erm/
+    │               ├── financial.ts
+    │               ├── hr.ts
+    │               └── inventory.ts
     ├── astro/                 # Astro consumer (recommended)
     │   └── src/
     │       ├── pages/
     │       │   ├── index.astro
-    │       │   ├── admin/[...slug].astro  # Mounts QwikEngine
-    │       │   └── api/                   # Astro API routes
+    │       │   └── admin/[...slug].astro  # Mounts QwikEngine
     │       └── layouts/
     └── next/                  # Next.js consumer
         └── src/
             └── app/
-                ├── admin/[...slug]/page.tsx  # Mounts QwikEngine
-                └── api/                     # Next.js API routes
+                └── admin/[...slug]/page.tsx  # Mounts QwikEngine
 ```
 
 ## Key Principles
@@ -53,17 +60,22 @@ qwik/                           # Root workspace (@qwik/monorepo)
 # Root workspace (monorepo)
 bun install                    # Install all dependencies
 
+# Hono backend API (port 3001)
+bun run dev:be              # Start backend dev server
+bun run build:be            # Build backend
+bun run start:be            # Start backend production
+
 # Astro consumer (recommended)
-bun run dev:astro            # Dev server on port 4321
-bun run build:astro          # Production build
-APP_BASE_URL=http://localhost:4321 bun start:astro  # Run production
+bun run dev:astro           # Dev server on port 4321
+bun run build:astro         # Production build
+APP_BASE_URL=http://localhost:3001 bun start:astro  # Run production
 
 # Next.js consumer
-bun run dev                   # Dev server on port 3000
+bun run dev                  # Dev server on port 3000
 bun run build                # Production build
 
-# Both apps concurrently
-bun run dev:all             # Next.js + Astro dev servers
+# All apps concurrently (BE + Next.js + Astro)
+bun run dev:all
 ```
 
 ## Package Exports
@@ -81,22 +93,24 @@ All packages accessed via `@qwik/monorepo`:
 ## Environment Variables
 
 ```bash
-APP_BASE_URL=           # API base URL (default: http://localhost:4321 for Astro)
+APP_BASE_URL=           # API base URL for Hono backend (default: http://localhost:3001)
 NEXT_PUBLIC_APP_URL=    # Next.js app URL
 API_KEY=               # API authentication key (server-side only)
 ```
 
-## API Routes (Host-specific)
+## API Routes (Centralized in Hono)
 
-Each host has its own API routes at `src/pages/api/`:
-- Astro: `apps/astro/src/pages/api/*`
-- Next.js: `apps/next/src/app/api/*`
+All API routes are centralized in the Hono backend at `apps/be/src/routes/`:
+- `apps/be/src/routes/crm.ts` - CRM endpoints
+- `apps/be/src/routes/erm/financial.ts` - Financial endpoints
+- `apps/be/src/routes/erm/hr.ts` - HR endpoints
+- `apps/be/src/routes/erm/inventory.ts` - Inventory endpoints
 
 ## Security
 
 - API key never reaches the browser
 - All data fetching happens server-side via package actions
-- API routes handle external API communication
+- Hono backend handles external API communication
 
 ## Troubleshooting
 

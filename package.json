@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "apps/be"
   ],
   "exports": {
     "./engine": "./packages/engine/index.tsx",
@@ -28,14 +29,17 @@
   },
   "scripts": {
     "dev": "bun --cwd apps/next dev",
-    "dev:astro": "APP_BASE_URL=http://localhost:4321 bun --cwd apps/astro dev",
-    "dev:all": "concurrently \"bun --cwd apps/next dev\" \"bun --cwd apps/astro dev\"",
+    "dev:be": "bun --cwd apps/be dev",
+    "dev:astro": "bun --cwd apps/astro dev",
+    "dev:all": "concurrently \"bun --cwd apps/be dev\" \"bun --cwd apps/next dev\" \"bun --cwd apps/astro dev\"",
     "build": "bun --cwd apps/next build",
+    "build:be": "bun --cwd apps/be build",
     "build:astro": "bun --cwd apps/astro build",
     "build:all": "bun build && bun build:astro",
     "start": "bun --cwd apps/next start",
-    "start:astro": "APP_BASE_URL=http://localhost:4321 bun --cwd apps/astro start",
-    "start:all": "concurrently \"bun --cwd apps/next start\" \"bun --cwd apps/astro start\"",
+    "start:be": "bun --cwd apps/be start",
+    "start:astro": "bun --cwd apps/astro start",
+    "start:all": "concurrently \"bun --cwd apps/be start\" \"bun --cwd apps/next start\" \"bun --cwd apps/astro start\"",
     "lint": "biome check",
     "format": "biome format --write"
   },

@@ -14,11 +14,24 @@
 - Use strict TypeScript (`strict: true` in tsconfig)
 - Prefer named exports over default exports for better refactoring support
 
+## Monorepo Imports
+
+Use `@qwik/monorepo/*` for package imports:
+```typescript
+// ✅ Correct
+import { CustomerList } from '@qwik/monorepo/crm/components';
+
+// ❌ Wrong - file protocol breaks Turbopack
+import { CustomerList } from '../../packages/crm/components';
+```
+
 ## File Organization
 
 - Prefer many small files (200-400 lines) over large ones
 - Organize by feature, not by type
 - Co-locate tests with source files
+- Packages go in `packages/*/src/`
+- Apps go in `apps/*/src/`
 
 ## Functions
 
@@ -48,3 +61,4 @@
 - [ ] Error cases handled
 - [ ] Types are explicit (no implicit `any`)
 - [ ] Functions are documented only when necessary
+- [ ] API calls use `createApiClient()` (server-side only)

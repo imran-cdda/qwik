@@ -1,10 +1,16 @@
 # Backend Patterns
 
+## API Routes (Host-specific)
+
+Each host has its own API routes:
+- Astro: `apps/astro/src/pages/api/*`
+- Next.js: `apps/next/src/app/api/*`
+
 ## Astro API Routes
 
 ### Basic Endpoint
 ```typescript
-// src/pages/api/users.ts
+// apps/astro/src/pages/api/users.ts
 import type { APIRoute } from 'astro';
 
 export const GET: APIRoute = async ({ params, request }) => {
@@ -32,6 +38,20 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 };
+```
+
+## API Client (Server-side)
+
+All API calls from packages must use `createApiClient()` from `@qwik/monorepo/shared`:
+```typescript
+import { createApiClient } from '@qwik/monorepo/shared';
+
+const api = createApiClient({
+  baseUrl: process.env.APP_BASE_URL || 'http://localhost:4321',
+  apiKey: process.env.API_KEY,
+});
+
+// Then use: api.get('/api/erm/financial')
 ```
 
 ## Error Handling

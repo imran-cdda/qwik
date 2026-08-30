@@ -50,6 +50,20 @@ test('returns user when valid id provided', async () => {
 });
 ```
 
+## Testing Packages
+
+Packages in `packages/*` should be tested in isolation:
+- Unit test actions (API functions)
+- Unit test components with mocked dependencies
+- Use `createApiClient()` mock for server-side calls
+
+## Testing Apps
+
+Apps in `apps/*` should test integration:
+- Test API routes
+- Test page rendering
+- Test navigation flows
+
 ## When Tests Fail
 
 - If the test was correct and the implementation is wrong → fix the implementation

@@ -4,14 +4,16 @@
 
 ### Component Structure
 ```tsx
+'use client';  // Required for interactive components
+
 interface Props {
   title: string;
-  onSubmit: (data: FormData) => void;
+  initialData?: Data[];
 }
 
-export function MyComponent({ title, onSubmit }: Props) {
+export function MyComponent({ title, initialData = [] }: Props) {
   // 1. Hooks first
-  const [state, setState] = useState('');
+  const [state, setState] = useState(initialData);
 
   // 2. Handlers
   const handleClick = () => { /* ... */ };
@@ -43,6 +45,19 @@ export function MyComponent({ title, onSubmit }: Props) {
 - Use `useCallback` for event handlers passed to children
 - Lazy load components with `React.lazy`
 
+## Monorepo Component Import Pattern
+
+Components from packages use `@qwik/monorepo/*`:
+```tsx
+// packages/crm/components.tsx
+'use client';
+import { getCustomers } from '@qwik/monorepo/crm/actions';
+
+export function CustomerList({ initialData = [] }: Props) {
+  // component code
+}
+```
+
 ## Astro Patterns
 
 ### Layouts
@@ -64,4 +79,28 @@ interface Props {
 const { title } = Astro.props;
 ---
 <h1>{title}</h1>
+```
+
+### Mounting QwikEngine
+```astro
+---
+import QwikEngine from '@qwik/monorepo/engine';
+
+const { slug } = Astro.params;
+const slugArray = slug ? slug.split('/') : [];
+const params = { slug: slugArray };
+---
+
+<QwikEngine params={params} />
+```
+
+## Tailwind CSS v4
+
+Use `@import "tailwindcss"` in CSS:
+```css
+@import "tailwindcss";
+
+@theme {
+  --color-slate-900: #0f172a;
+}
 ```

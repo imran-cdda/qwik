@@ -16,6 +16,24 @@
 2. Get it right
 3. Get it clean
 
+## Monorepo Workflow
+
+This is a Bun workspaces monorepo:
+- Root `package.json` defines workspaces (`packages`, `apps/*`)
+- All packages exported via `@qwik/monorepo` with `exports` field
+- Apps import from `@qwik/monorepo/*` not `file:` protocol
+
+## Commands
+
+```bash
+bun install              # Install all dependencies
+bun run dev             # Next.js dev server
+bun run dev:astro      # Astro dev server
+bun run dev:all         # Both dev servers
+bun run build           # Next.js build
+bun run build:astro     # Astro build
+```
+
 ## Tools to Favor
 
 - `Edit`, `Write` for code changes

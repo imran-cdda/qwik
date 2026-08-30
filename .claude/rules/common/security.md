@@ -15,9 +15,21 @@ Before any commit, verify:
 ## Secret Management
 
 - **Never** hardcode secrets in source code
-- Use environment variables (`import.meta.env` in Astro/Vite)
+- Use environment variables (`import.meta.env` in Astro/Vite, `process.env` in Node.js)
 - Validate secrets at startup — fail fast if missing
 - Rotate any exposed secrets immediately
+
+## API Security (Critical)
+
+All API calls must be server-side only. Use `createApiClient()` from `@qwik/monorepo/shared`:
+```typescript
+// ✅ Correct - server-side only
+const api = createApiClient({ apiKey: process.env.API_KEY });
+const data = await api.get('/api/data');
+
+// ❌ Wrong - exposes API key to client
+const data = await fetch('/api/data');
+```
 
 ## If a Security Issue is Discovered
 
@@ -34,3 +46,4 @@ Before any commit, verify:
 - Use CSP headers where possible
 - Validate all props passed to React components
 - Avoid `dangerouslySetInnerHTML` unless absolutely necessary
+- `'use client'` directive does not make a component secure — always validate on server

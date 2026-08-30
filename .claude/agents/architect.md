@@ -17,12 +17,29 @@
 - Security — Build security in from the start
 - Performance — Profile before optimizing
 
+## Monorepo Architecture
+
+**Qwik** uses a single monorepo structure:
+- `@qwik/monorepo` is the single npm package containing all modules
+- Apps (Astro, Next.js) are workspaces that import from `@qwik/monorepo/*`
+- Packages export via `exports` field in root `package.json`
+
+## Package Exports Pattern
+
+All modules accessed via `@qwik/monorepo`:
+```typescript
+import { Something } from '@qwik/monorepo/engine';
+import { getData } from '@qwik/monorepo/erm/financial';
+import { CustomerList } from '@qwik/monorepo/crm/components';
+```
+
 ## Astro + React Patterns
 
 - **Page components**: Astro files in `src/pages/`
-- **Interactive islands**: React components with `client:load` or `client:visible`
-- **Shared utilities**: Plain TypeScript in `src/lib/`
-- **Data fetching**: Astro loaders for SSR, React hooks for client-side
+- **Interactive components**: React components with `'use client'` directive
+- **QwikEngine**: Framework-agnostic routing component that handles dynamic routes
+- **Data fetching**: Server-side in QwikEngine loader functions
+- **API routes**: Host-specific (Astro in `src/pages/api/`, Next.js in `src/app/api/`)
 
 ## Design Checklist
 

@@ -10,14 +10,15 @@ export function createApiClient(config: ApiClientConfig = {}) {
   async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
     let url = endpoint;
     if (!endpoint.startsWith('http')) {
-      // Construct absolute URL for server-side calls
-      // Default to Hono backend on port 3001
-      // Use import.meta.env for Astro/Next.js compatibility
+      // Route API calls through the FE app's own /api/* proxy layer.
+      // Each FE exposes /api/** routes that forward to the BE server.
+      // Priority: Astro PUBLIC_APP_URL > Next.js NEXT_PUBLIC_APP_URL > Astro default.
+      // NOTE: APP_BASE_URL is intentionally excluded here — it is used by the
+      // proxy handlers themselves to reach the BE, not by api-client.
       const baseUrl =
-        (typeof import.meta !== 'undefined' && (import.meta as { env?: Record<string, string> }).env?.APP_BASE_URL) ||
-        process.env.APP_BASE_URL ||
+        (typeof import.meta !== 'undefined' && (import.meta as { env?: Record<string, string> }).env?.PUBLIC_APP_URL) ||
         process.env.NEXT_PUBLIC_APP_URL ||
-        'http://localhost:3001';
+        'http://localhost:4321'; // Astro default; Next.js overrides via NEXT_PUBLIC_APP_URL
       const protocol = baseUrl.startsWith('https') ? 'https' : 'http';
       const host = baseUrl.replace(/^https?:\/\//, '');
       url = `${protocol}://${host}${endpoint}`;

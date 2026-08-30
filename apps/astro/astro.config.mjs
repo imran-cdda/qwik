@@ -17,12 +17,17 @@ export default defineConfig({
   }),
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      fs: {
+        allow: ['../..', '../../packages']
+      }
+    },
     resolve: {
       alias: {
-        '@qwik/engine': resolve(__dirname, '../../packages/engine/src'),
-        '@qwik/erm': resolve(__dirname, '../../packages/erm/src'),
-        '@qwik/crm': resolve(__dirname, '../../packages/crm/src'),
-        '@qwik/shared': resolve(__dirname, '../../packages/shared/src')
+        '@qwik/engine': resolve(__dirname, '../../packages/engine'),
+        '@qwik/erm': resolve(__dirname, '../../packages/erm'),
+        '@qwik/crm': resolve(__dirname, '../../packages/crm'),
+        '@qwik/shared': resolve(__dirname, '../../packages/shared')
       }
     }
   }

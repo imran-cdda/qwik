@@ -7,8 +7,14 @@
   ],
   "scripts": {
     "dev": "next dev",
+    "dev:astro": "cd apps/astro && npm run dev",
+    "dev:all": "concurrently \"npm run dev\" \"npm run dev:astro\"",
     "build": "next build",
+    "build:astro": "cd apps/astro && npm run build",
+    "build:all": "concurrently \"npm run build\" \"npm run build:astro\"",
     "start": "next start",
+    "start:astro": "cd apps/astro && node dist/server/entry.mjs",
+    "start:all": "concurrently \"npm run start\" \"npm run start:astro\"",
     "lint": "biome check",
     "format": "biome format --write"
   },
@@ -22,6 +28,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "concurrently": "^10.0.5",
     "eslint": "^9",
     "eslint-config-next": "16.3.2",
     "tailwindcss": "^4",

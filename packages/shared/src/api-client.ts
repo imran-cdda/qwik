@@ -1,18 +1,19 @@
 export interface ApiClientConfig {
-  baseUrl: string;
-  apiKey: string;
+  baseUrl?: string;
+  apiKey?: string;
 }
 
 // Server-side only API client - API key never exposed to client
-export function createApiClient(config: ApiClientConfig) {
-  const { baseUrl, apiKey } = config;
+export function createApiClient(config: ApiClientConfig = {}) {
+  const { apiKey } = config;
 
   async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
     let url = endpoint;
     if (!endpoint.startsWith('http')) {
       // Construct absolute URL for server-side calls
-      const protocol = process.env.NEXT_PUBLIC_APP_URL?.startsWith('https') ? 'https' : 'http';
-      const host = process.env.NEXT_PUBLIC_APP_URL?.replace(/^https?:\/\//, '') || 'localhost:3000';
+      const baseUrl = process.env.APP_BASE_URL || process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+      const protocol = baseUrl.startsWith('https') ? 'https' : 'http';
+      const host = baseUrl.replace(/^https?:\/\//, '');
       url = `${protocol}://${host}${endpoint}`;
     }
 

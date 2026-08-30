@@ -9,11 +9,13 @@ import { getProducts } from '@qwik/erm/inventory';
 import { getCustomers } from '@qwik/crm/actions';
 
 interface Props {
-  params: Promise<{ slug: string[] }>;
+  params: { slug: string[] } | Promise<{ slug: string[] }>;
+  navigation?: React.ReactNode;
 }
 
-export default async function QwikEngine({ params }: Props) {
-  const { slug } = await params;
+export default async function QwikEngine({ params, navigation }: Props) {
+  const resolved = params instanceof Promise ? await params : params;
+  const slug = resolved.slug;
   const [packageName, pageName] = slug || [];
 
   // Fetch data based on route
@@ -39,24 +41,26 @@ export default async function QwikEngine({ params }: Props) {
 
   return (
     <div className="qwik-engine">
-      <aside className="qwik-sidebar">
-        <nav>
-          <div className="qwik-package">
-            <h3>ERM</h3>
-            <ul>
-              <li><a href="/admin/erm/financial">Financial</a></li>
-              <li><a href="/admin/erm/hr">Human Resources</a></li>
-              <li><a href="/admin/erm/inventory">Inventory</a></li>
-            </ul>
-          </div>
-          <div className="qwik-package">
-            <h3>CRM</h3>
-            <ul>
-              <li><a href="/admin/crm/customers">Customers</a></li>
-            </ul>
-          </div>
-        </nav>
-      </aside>
+      {navigation || (
+        <aside className="qwik-sidebar">
+          <nav>
+            <div className="qwik-package">
+              <h3>ERM</h3>
+              <ul>
+                <li><a href="/admin/erm/financial">Financial</a></li>
+                <li><a href="/admin/erm/hr">Human Resources</a></li>
+                <li><a href="/admin/erm/inventory">Inventory</a></li>
+              </ul>
+            </div>
+            <div className="qwik-package">
+              <h3>CRM</h3>
+              <ul>
+                <li><a href="/admin/crm/customers">Customers</a></li>
+              </ul>
+            </div>
+          </nav>
+        </aside>
+      )}
       <main className="qwik-content">
         {pageComponent || <div>Page not found: {slug?.join('/')}</div>}
       </main>

@@ -1,10 +1,14 @@
 ---
-import QwikEngine from '@qwik/engine';
+import Layout from '../../layouts/Layout.astro';
+import QwikEngine from '@qwik/monorepo/engine';
 
 const { slug } = Astro.params;
+const currentPath = `/admin/${slug || ''}`;
 // Astro [...slug] gives us "erm/financial" as a string, split to get array
 const slugArray = slug ? slug.split('/') : [];
 const params = { slug: slugArray };
 ---
 
-<QwikEngine params={params} />
+<Layout>
+  <QwikEngine params={params} currentPath={currentPath} />
+</Layout>

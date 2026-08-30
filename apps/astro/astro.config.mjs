@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import node from '@astrojs/node';
+import tailwindcss from '@tailwindcss/vite';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 
@@ -15,12 +16,18 @@ export default defineConfig({
     mode: 'standalone'
   }),
   vite: {
+    plugins: [tailwindcss()],
+    server: {
+      fs: {
+        allow: ['../..', '../../packages']
+      }
+    },
     resolve: {
       alias: {
-        '@qwik/engine': resolve(__dirname, '../../packages/engine/src'),
-        '@qwik/erm': resolve(__dirname, '../../packages/erm/src'),
-        '@qwik/crm': resolve(__dirname, '../../packages/crm/src'),
-        '@qwik/shared': resolve(__dirname, '../../packages/shared/src')
+        '@qwik/engine': resolve(__dirname, '../../packages/engine'),
+        '@qwik/erm': resolve(__dirname, '../../packages/erm'),
+        '@qwik/crm': resolve(__dirname, '../../packages/crm'),
+        '@qwik/shared': resolve(__dirname, '../../packages/shared')
       }
     }
   }

@@ -1,4 +1,5 @@
 ---
+import Layout from '../../layouts/Layout.astro';
 import QwikEngine from '@qwik/engine';
 
 const { slug } = Astro.params;
@@ -7,4 +8,6 @@ const slugArray = slug ? slug.split('/') : [];
 const params = { slug: slugArray };
 ---
 
-<QwikEngine params={params} />
+<Layout>
+  <QwikEngine params={params} />
+</Layout>

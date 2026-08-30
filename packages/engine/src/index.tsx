@@ -3,6 +3,7 @@ import { FinancialDashboard } from '@qwik/erm/financial/components';
 import { EmployeeList } from '@qwik/erm/hr/components';
 import { InventoryDashboard } from '@qwik/erm/inventory/components';
 import { CustomerList } from '@qwik/crm/components';
+import { Navigation } from './components/navigation';
 import { getInvoices } from '@qwik/erm/financial';
 import { getEmployees } from '@qwik/erm/hr';
 import { getProducts } from '@qwik/erm/inventory';
@@ -10,10 +11,9 @@ import { getCustomers } from '@qwik/crm/actions';
 
 interface Props {
   params: { slug: string[] } | Promise<{ slug: string[] }>;
-  navigation?: React.ReactNode;
 }
 
-export default async function QwikEngine({ params, navigation }: Props) {
+export default async function QwikEngine({ params }: Props) {
   const resolved = params instanceof Promise ? await params : params;
   const slug = resolved.slug;
   const [packageName, pageName] = slug || [];
@@ -40,28 +40,9 @@ export default async function QwikEngine({ params, navigation }: Props) {
   }
 
   return (
-    <div className="qwik-engine">
-      {navigation || (
-        <aside className="qwik-sidebar">
-          <nav>
-            <div className="qwik-package">
-              <h3>ERM</h3>
-              <ul>
-                <li><a href="/admin/erm/financial">Financial</a></li>
-                <li><a href="/admin/erm/hr">Human Resources</a></li>
-                <li><a href="/admin/erm/inventory">Inventory</a></li>
-              </ul>
-            </div>
-            <div className="qwik-package">
-              <h3>CRM</h3>
-              <ul>
-                <li><a href="/admin/crm/customers">Customers</a></li>
-              </ul>
-            </div>
-          </nav>
-        </aside>
-      )}
-      <main className="qwik-content">
+    <div className="flex min-h-screen">
+      <Navigation />
+      <main className="flex-1 p-8 bg-slate-50">
         {pageComponent || <div>Page not found: {slug?.join('/')}</div>}
       </main>
     </div>

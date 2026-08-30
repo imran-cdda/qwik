@@ -1,8 +1,8 @@
 import { t as __exportAll } from "./rolldown-runtime_D7D4PA-g.mjs";
 import { $ as UnsupportedImageFormat, A as MissingGetFontFileRequestUrl, F as NoImageMetadata, Q as UnsupportedImageConversion, T as LocalImageUsedWrongly, W as RemoteImageNotAllowed, b as IncompatibleDescriptorOptions, d as ExpectedNotESMImage, f as FailedToFetchRemoteImageDimensions, j as MissingImageDimension, l as ExpectedImage, p as FontFamilyNotFound, t as AstroError, u as ExpectedImageOptions, w as InvalidImageService, y as ImageMissingAlt } from "./errors_BP0o2XvA.mjs";
-import { _ as unescapeHTML, f as addAttribute, l as renderTemplate, t as spreadAttributes, u as maybeRenderHead, y as createAstro } from "./server_Q1M3t7Yu.mjs";
+import { b as createAstro, d as maybeRenderHead, p as addAttribute, t as spreadAttributes, u as renderTemplate, v as unescapeHTML } from "./server_C1LDHopY.mjs";
 import { d as isRemotePath, f as joinPaths, h as removeQueryString, t as isRemoteAllowed, u as isParentDirectory } from "./remote_hZSbqLk8.mjs";
-import { t as createComponent } from "./compiler_BRfI-1QV.mjs";
+import { t as createComponent } from "./compiler_i3D1vfB_.mjs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import * as mime from "mrmime";
@@ -1341,7 +1341,7 @@ var cssFitValues = [
 ];
 async function getConfiguredImageService() {
 	if (!globalThis?.astroAsset?.imageService) {
-		const { default: service } = await import("./sharp_CThJTyIm.mjs").catch((e) => {
+		const { default: service } = await import("./sharp_8f8JEzuc.mjs").catch((e) => {
 			const error = new AstroError(InvalidImageService);
 			error.cause = e;
 			throw error;

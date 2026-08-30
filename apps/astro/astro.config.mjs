@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import node from '@astrojs/node';
+import tailwindcss from '@tailwindcss/vite';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 
@@ -15,6 +16,7 @@ export default defineConfig({
     mode: 'standalone'
   }),
   vite: {
+    plugins: [tailwindcss()],
     resolve: {
       alias: {
         '@qwik/engine': resolve(__dirname, '../../packages/engine/src'),

@@ -1,15 +1,26 @@
 import { t as __exportAll } from "./rolldown-runtime_D7D4PA-g.mjs";
-import { i as renderComponent, l as renderTemplate, y as createAstro } from "./server_Q1M3t7Yu.mjs";
-import { t as createComponent } from "./compiler_BRfI-1QV.mjs";
+import { b as createAstro, f as renderHead, i as renderComponent, p as addAttribute, s as renderSlot, u as renderTemplate } from "./server_C1LDHopY.mjs";
+import { t as createComponent } from "./compiler_i3D1vfB_.mjs";
+/* empty css                 */
 import { useState } from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
+import { usePathname } from "next/navigation.js";
+//#region src/layouts/Layout.astro
+createAstro("https://astro.build");
+var $$Layout = createComponent(($$result, $$props, $$slots) => {
+	const Astro = $$result.createAstro($$props, $$slots);
+	Astro.self = $$Layout;
+	const { title = "Qwik Dashboard" } = Astro.props;
+	return renderTemplate`<html lang="en"><head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" href="/favicon.ico"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator"${addAttribute(Astro.generator, "content")}><title>${title}</title>${renderHead($$result)}</head><body>${renderSlot($$result, $$slots["default"])}</body></html>`;
+}, "C:/Users/mdimr/OneDrive/Desktop/project/qwik/apps/astro/src/layouts/Layout.astro", void 0);
+//#endregion
 //#region ../../packages/shared/src/api-client.ts
 function createApiClient(config = {}) {
 	const { apiKey } = config;
 	async function request(endpoint, options = {}) {
 		let url = endpoint;
 		if (!endpoint.startsWith("http")) {
-			const baseUrl = process.env.APP_BASE_URL || process.env.NEXT_PUBLIC_APP_URL || "http://localhost:4321";
+			const baseUrl = process.env.APP_BASE_URL || process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 			url = `${baseUrl.startsWith("https") ? "https" : "http"}://${baseUrl.replace(/^https?:\/\//, "")}${endpoint}`;
 		}
 		const response = await fetch(url, {
@@ -145,6 +156,79 @@ function CustomerList({ initialData = [] }) {
 	});
 }
 //#endregion
+//#region ../../packages/engine/src/components/navigation-client.tsx
+function NavigationClient({ items, currentPath }) {
+	let pathname = currentPath || "";
+	try {
+		pathname = usePathname() || currentPath || "";
+	} catch {}
+	const ermItems = items.filter((item) => item.package === "erm");
+	const crmItems = items.filter((item) => item.package === "crm");
+	return /* @__PURE__ */ jsxs("aside", {
+		className: "w-64 min-h-screen bg-slate-900 text-white p-4",
+		children: [/* @__PURE__ */ jsx("div", {
+			className: "mb-8",
+			children: /* @__PURE__ */ jsx("h1", {
+				className: "text-xl font-bold",
+				children: "Qwik Dashboard"
+			})
+		}), /* @__PURE__ */ jsxs("nav", { children: [/* @__PURE__ */ jsxs("div", {
+			className: "mb-6",
+			children: [/* @__PURE__ */ jsx("h3", {
+				className: "text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2",
+				children: "ERM"
+			}), /* @__PURE__ */ jsx("ul", {
+				className: "space-y-1",
+				children: ermItems.map((item) => /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", {
+					href: item.href,
+					className: `block px-3 py-2 rounded-lg transition-colors ${pathname === item.href ? "bg-slate-800 text-white" : "text-slate-300 hover:bg-slate-800 hover:text-white"}`,
+					children: item.label
+				}) }, item.href))
+			})]
+		}), /* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx("h3", {
+			className: "text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2",
+			children: "CRM"
+		}), /* @__PURE__ */ jsx("ul", {
+			className: "space-y-1",
+			children: crmItems.map((item) => /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", {
+				href: item.href,
+				className: `block px-3 py-2 rounded-lg transition-colors ${pathname === item.href ? "bg-slate-800 text-white" : "text-slate-300 hover:bg-slate-800 hover:text-white"}`,
+				children: item.label
+			}) }, item.href))
+		})] })] })]
+	});
+}
+//#endregion
+//#region ../../packages/engine/src/components/navigation.tsx
+var navItems = [
+	{
+		href: "/admin/erm/financial",
+		label: "Financial",
+		package: "erm"
+	},
+	{
+		href: "/admin/erm/hr",
+		label: "Human Resources",
+		package: "erm"
+	},
+	{
+		href: "/admin/erm/inventory",
+		label: "Inventory",
+		package: "erm"
+	},
+	{
+		href: "/admin/crm/customers",
+		label: "Customers",
+		package: "crm"
+	}
+];
+function Navigation({ currentPath = "" }) {
+	return /* @__PURE__ */ jsx(NavigationClient, {
+		items: navItems,
+		currentPath
+	});
+}
+//#endregion
 //#region ../../packages/engine/src/index.tsx
 async function QwikEngine({ params }) {
 	const slug = (params instanceof Promise ? await params : params).slug;
@@ -168,34 +252,9 @@ async function QwikEngine({ params }) {
 		}
 	}
 	return /* @__PURE__ */ jsxs("div", {
-		className: "qwik-engine",
-		children: [/* @__PURE__ */ jsx("aside", {
-			className: "qwik-sidebar",
-			children: /* @__PURE__ */ jsxs("nav", { children: [/* @__PURE__ */ jsxs("div", {
-				className: "qwik-package",
-				children: [/* @__PURE__ */ jsx("h3", { children: "ERM" }), /* @__PURE__ */ jsxs("ul", { children: [
-					/* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", {
-						href: "/admin/erm/financial",
-						children: "Financial"
-					}) }),
-					/* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", {
-						href: "/admin/erm/hr",
-						children: "Human Resources"
-					}) }),
-					/* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", {
-						href: "/admin/erm/inventory",
-						children: "Inventory"
-					}) })
-				] })]
-			}), /* @__PURE__ */ jsxs("div", {
-				className: "qwik-package",
-				children: [/* @__PURE__ */ jsx("h3", { children: "CRM" }), /* @__PURE__ */ jsx("ul", { children: /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", {
-					href: "/admin/crm/customers",
-					children: "Customers"
-				}) }) })]
-			})] })
-		}), /* @__PURE__ */ jsx("main", {
-			className: "qwik-content",
+		className: "flex min-h-screen",
+		children: [/* @__PURE__ */ jsx(Navigation, {}), /* @__PURE__ */ jsx("main", {
+			className: "flex-1 p-8 bg-slate-50",
 			children: pageComponent || /* @__PURE__ */ jsxs("div", { children: ["Page not found: ", slug?.join("/")] })
 		})]
 	});
@@ -213,7 +272,7 @@ var $$Component = createComponent(($$result, $$props, $$slots) => {
 	Astro.self = $$Component;
 	const { slug } = Astro.params;
 	const params = { slug: slug ? slug.split("/") : [] };
-	return renderTemplate`${renderComponent($$result, "QwikEngine", QwikEngine, { "params": params })}`;
+	return renderTemplate`${renderComponent($$result, "Layout", $$Layout, {}, { "default": ($$result) => renderTemplate`${renderComponent($$result, "QwikEngine", QwikEngine, { "params": params })}` })}`;
 }, "C:/Users/mdimr/OneDrive/Desktop/project/qwik/apps/astro/src/pages/admin/[...slug].astro", void 0);
 var $$file = "C:/Users/mdimr/OneDrive/Desktop/project/qwik/apps/astro/src/pages/admin/[...slug].astro";
 var $$url = "/admin/[...slug]";

@@ -1,5 +1,5 @@
 import { t as AstroError, x as InvalidComponentArgs } from "./errors_BP0o2XvA.mjs";
-import "./server_Q1M3t7Yu.mjs";
+import "./server_C1LDHopY.mjs";
 //#region node_modules/astro/dist/runtime/server/astro-component.js
 function validateArgs(args) {
 	if (args.length !== 3) return false;

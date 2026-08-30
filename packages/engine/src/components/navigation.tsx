@@ -1,6 +1,7 @@
-'use client';
+// Navigation - Framework-agnostic sidebar navigation
+// Uses client-side routing when available, falls back to server navigation
 
-import Link from 'next/link';
+import { NavigationClient } from './navigation-client';
 
 const navItems = [
   { href: '/admin/erm/financial', label: 'Financial', package: 'erm' },
@@ -9,31 +10,12 @@ const navItems = [
   { href: '/admin/crm/customers', label: 'Customers', package: 'crm' },
 ];
 
-export function Navigation() {
+interface Props {
+  currentPath?: string;
+}
+
+export function Navigation({ currentPath = '' }: Props) {
   return (
-    <aside className="qwik-sidebar">
-      <nav>
-        <div className="qwik-package">
-          <h3>ERM</h3>
-          <ul>
-            {navItems.filter(item => item.package === 'erm').map(item => (
-              <li key={item.href}>
-                <Link href={item.href}>{item.label}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="qwik-package">
-          <h3>CRM</h3>
-          <ul>
-            {navItems.filter(item => item.package === 'crm').map(item => (
-              <li key={item.href}>
-                <Link href={item.href}>{item.label}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </nav>
-    </aside>
+    <NavigationClient items={navItems} currentPath={currentPath} />
   );
 }

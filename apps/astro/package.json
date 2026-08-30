@@ -10,13 +10,17 @@
   "dependencies": {
     "@astrojs/node": "^11.0.0",
     "@astrojs/react": "^6.0.4",
-    "@qwik/shared": "file:../../packages/shared",
+    "@astrojs/tailwind": "^6.0.2",
+    "@qwik/crm": "file:../../packages/crm",
     "@qwik/engine": "file:../../packages/engine",
     "@qwik/erm": "file:../../packages/erm",
-    "@qwik/crm": "file:../../packages/crm",
+    "@qwik/shared": "file:../../packages/shared",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.2.6",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "tailwindcss": "3"
   },
   "devDependencies": {
     "@types/react": "^19",

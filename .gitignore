@@ -3,15 +3,15 @@ node_modules/
 **/node_modules/
 
 # Next.js build & dev outputs
-.next/
+/.next/
 **/.next/
-out/
+/out/
 **/out/
 
 # Astro build & dev outputs
-.astro/
+/.astro/
 **/.astro/
-dist/
+/dist/
 **/dist/
 
 # Generic Build Outputs

@@ -9,6 +9,7 @@
   ],
   "exports": {
     "./engine": "./packages/engine/index.tsx",
+    "./engine/astro.astro": "./packages/engine/astro.astro",
     "./engine/*": "./packages/engine/*",
     "./erm": "./packages/erm/index.ts",
     "./erm/financial": "./packages/erm/financial/index.ts",

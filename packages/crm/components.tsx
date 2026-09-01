@@ -1,8 +1,8 @@
 ﻿'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import type { Customer, CreateCustomerInput } from '@qwik/monorepo/crm/actions';
-import { createCustomer } from '@qwik/monorepo/crm/actions';
+import type { Customer, CreateCustomerInput } from '@qwik/crm/actions';
+import { createCustomer } from '@qwik/crm/actions';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -27,7 +27,6 @@ function CreateCustomerModal({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const firstInputRef = useRef<HTMLInputElement>(null);
-console.log("hellooooo_-")
   // Focus first field when modal opens; reset form when it closes
   useEffect(() => {
     if (open) {

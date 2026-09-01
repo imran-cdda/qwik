@@ -16,10 +16,10 @@
 
 ## Monorepo Imports
 
-Use `@qwik/monorepo/*` for package imports:
+Use `@qwik/*` for package imports:
 ```typescript
 // ✅ Correct
-import { CustomerList } from '@qwik/monorepo/crm/components';
+import { CustomerList } from '@qwik/crm/components';
 
 // ❌ Wrong - file protocol breaks Turbopack
 import { CustomerList } from '../../packages/crm/components';

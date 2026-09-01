@@ -48,7 +48,7 @@ qwik/                           # Root workspace (@qwik/monorepo)
 
 ## Key Principles
 
-1. **Single monorepo package** - All packages exported via `@qwik/monorepo/*`
+1. **Single monorepo package** - All packages exported via `@qwik/*`
 2. **API calls stay server-side** - Packages use `createApiClient()` to call internal API routes
 3. **Framework-agnostic** - Packages are plain React components, work in Next.js, Astro, Remix
 4. **Host provides API routes** - Each host (Next.js, Astro) has its own `/api/*` routes
@@ -81,14 +81,14 @@ bun run dev:all
 ## Package Exports
 
 All packages accessed via `@qwik/monorepo`:
-- `@qwik/monorepo/engine` - QwikEngine
-- `@qwik/monorepo/erm/financial` - Financial module
-- `@qwik/monorepo/erm/hr` - HR module
-- `@qwik/monorepo/erm/inventory` - Inventory module
-- `@qwik/monorepo/crm` - CRM module
-- `@qwik/monorepo/crm/actions` - CRM API functions
-- `@qwik/monorepo/crm/components` - CRM React components
-- `@qwik/monorepo/shared` - Shared types and utilities
+- `@qwik/engine` - QwikEngine
+- `@qwik/erm/financial` - Financial module
+- `@qwik/erm/hr` - HR module
+- `@qwik/erm/inventory` - Inventory module
+- `@qwik/crm` - CRM module
+- `@qwik/crm/actions` - CRM API functions
+- `@qwik/crm/components` - CRM React components
+- `@qwik/shared` - Shared types and utilities
 
 ## Environment Variables
 

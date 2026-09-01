@@ -23,7 +23,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "@qwik/monorepo": ["../../packages"],
-      "@qwik/monorepo/*": ["../../packages/*"]
+      "@qwik/*": ["../../packages/*"]
     }
   },
   "include": [

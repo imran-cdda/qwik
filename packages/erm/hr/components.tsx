@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import type { Employee, CreateEmployeeInput } from '@qwik/monorepo/erm/hr';
-import { createEmployee } from '@qwik/monorepo/erm/hr';
+import type { Employee, CreateEmployeeInput } from '@qwik/erm/hr';
+import { createEmployee } from '@qwik/erm/hr';
 
 interface Props {
   initialData?: Employee[];

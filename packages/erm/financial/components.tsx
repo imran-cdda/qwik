@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import type { Invoice, CreateInvoiceInput } from '@qwik/monorepo/erm/financial';
-import { createInvoice } from '@qwik/monorepo/erm/financial';
+import type { Invoice, CreateInvoiceInput } from '@qwik/erm/financial';
+import { createInvoice } from '@qwik/erm/financial';
 
 interface Props {
   initialData?: Invoice[];

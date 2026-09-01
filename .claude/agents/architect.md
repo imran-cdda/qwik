@@ -21,16 +21,16 @@
 
 **Qwik** uses a single monorepo structure:
 - `@qwik/monorepo` is the single npm package containing all modules
-- Apps (Astro, Next.js) are workspaces that import from `@qwik/monorepo/*`
+- Apps (Astro, Next.js) are workspaces that import from `@qwik/*`
 - Packages export via `exports` field in root `package.json`
 
 ## Package Exports Pattern
 
 All modules accessed via `@qwik/monorepo`:
 ```typescript
-import { Something } from '@qwik/monorepo/engine';
-import { getData } from '@qwik/monorepo/erm/financial';
-import { CustomerList } from '@qwik/monorepo/crm/components';
+import { Something } from '@qwik/engine';
+import { getData } from '@qwik/erm/financial';
+import { CustomerList } from '@qwik/crm/components';
 ```
 
 ## Astro + React Patterns

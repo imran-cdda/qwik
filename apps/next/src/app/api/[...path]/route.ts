@@ -1,5 +1,5 @@
 import { type NextRequest } from 'next/server';
-import { createProxyHandler } from '@qwik/monorepo/shared';
+import { createProxyHandler } from '@qwik/shared';
 
 // BE server URL - server-side only, never exposed to the browser
 const BE_URL = process.env.APP_BASE_URL || 'http://localhost:3001';

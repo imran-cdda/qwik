@@ -1,6 +1,6 @@
 // ERM - Financial actions - calls external API directly (server-side)
-import { createApiClient } from '@qwik/monorepo/shared';
-import type { Invoice, CreateInvoiceInput } from '@qwik/monorepo/shared';
+import { createApiClient } from '@qwik/shared';
+import type { Invoice, CreateInvoiceInput } from '@qwik/shared';
 
 export type { Invoice, CreateInvoiceInput };
 

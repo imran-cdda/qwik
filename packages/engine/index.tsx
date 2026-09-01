@@ -3,14 +3,14 @@ import { Navigation } from './components/navigation';
 import { matchRoute, registerPackage, type PageConfig, type PackageConfig } from './registry';
 
 // Built-in packages - these register themselves
-import { FinancialDashboard } from '@qwik/monorepo/erm/financial/components';
-import { getInvoices } from '@qwik/monorepo/erm/financial';
-import { EmployeeList } from '@qwik/monorepo/erm/hr/components';
-import { getEmployees } from '@qwik/monorepo/erm/hr';
-import { InventoryDashboard } from '@qwik/monorepo/erm/inventory/components';
-import { getProducts } from '@qwik/monorepo/erm/inventory';
-import { CustomerList } from '@qwik/monorepo/crm/components';
-import { getCustomers } from '@qwik/monorepo/crm/actions';
+import { FinancialDashboard } from '@qwik/erm/financial/components';
+import { getInvoices } from '@qwik/erm/financial';
+import { EmployeeList } from '@qwik/erm/hr/components';
+import { getEmployees } from '@qwik/erm/hr';
+import { InventoryDashboard } from '@qwik/erm/inventory/components';
+import { getProducts } from '@qwik/erm/inventory';
+import { CustomerList } from '@qwik/crm/components';
+import { getCustomers } from '@qwik/crm/actions';
 
 // Register ERM package
 registerPackage({

@@ -1,6 +1,6 @@
 // CRM API functions
-import type { Customer, CreateCustomerInput } from '@qwik/monorepo/shared';
-import { createApiClient } from '@qwik/monorepo/shared';
+import type { Customer, CreateCustomerInput } from '@qwik/shared';
+import { createApiClient } from '@qwik/shared';
 
 const api = createApiClient();
 

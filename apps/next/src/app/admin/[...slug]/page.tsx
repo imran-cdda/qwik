@@ -1,4 +1,4 @@
-import QwikEngine from '@qwik/monorepo/engine';
+import QwikEngine from '@qwik/engine';
 
 export default async function AdminPage({ params }: { params: Promise<{ slug: string[] }> }) {
   const resolvedParams = await params;

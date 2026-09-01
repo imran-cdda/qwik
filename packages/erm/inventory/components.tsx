@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import type { Product, CreateProductInput } from '@qwik/monorepo/erm/inventory';
-import { createProduct } from '@qwik/monorepo/erm/inventory';
+import type { Product, CreateProductInput } from '@qwik/erm/inventory';
+import { createProduct } from '@qwik/erm/inventory';
 
 interface Props {
   initialData?: Product[];

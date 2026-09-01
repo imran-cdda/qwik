@@ -21,7 +21,7 @@ Before any commit, verify:
 
 ## API Security (Critical)
 
-All API calls must be server-side only. Use `createApiClient()` from `@qwik/monorepo/shared`:
+All API calls must be server-side only. Use `createApiClient()` from `@qwik/shared`:
 ```typescript
 // ✅ Correct - server-side only
 const api = createApiClient({ apiKey: process.env.API_KEY });

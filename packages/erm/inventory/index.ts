@@ -1,6 +1,6 @@
 // ERM - Inventory API functions
-import type { Product, CreateProductInput } from '@qwik/monorepo/shared';
-import { createApiClient } from '@qwik/monorepo/shared';
+import type { Product, CreateProductInput } from '@qwik/shared';
+import { createApiClient } from '@qwik/shared';
 
 const api = createApiClient();
 

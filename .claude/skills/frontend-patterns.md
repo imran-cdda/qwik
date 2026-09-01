@@ -47,11 +47,11 @@ export function MyComponent({ title, initialData = [] }: Props) {
 
 ## Monorepo Component Import Pattern
 
-Components from packages use `@qwik/monorepo/*`:
+Components from packages use `@qwik/*`:
 ```tsx
 // packages/crm/components.tsx
 'use client';
-import { getCustomers } from '@qwik/monorepo/crm/actions';
+import { getCustomers } from '@qwik/crm/actions';
 
 export function CustomerList({ initialData = [] }: Props) {
   // component code
@@ -84,7 +84,7 @@ const { title } = Astro.props;
 ### Mounting QwikEngine
 ```astro
 ---
-import QwikEngine from '@qwik/monorepo/engine';
+import QwikEngine from '@qwik/engine';
 
 const { slug } = Astro.params;
 const slugArray = slug ? slug.split('/') : [];

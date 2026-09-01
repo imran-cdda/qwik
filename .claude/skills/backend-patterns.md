@@ -40,9 +40,9 @@ customersRoute.get('/', (c) => {
 
 ## API Client (Server-side)
 
-All API calls from packages must use `createApiClient()` from `@qwik/monorepo/shared`:
+All API calls from packages must use `createApiClient()` from `@qwik/shared`:
 ```typescript
-import { createApiClient } from '@qwik/monorepo/shared';
+import { createApiClient } from '@qwik/shared';
 
 const api = createApiClient({
   baseUrl: process.env.APP_BASE_URL || 'http://localhost:3001',

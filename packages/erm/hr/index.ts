@@ -1,6 +1,6 @@
 // ERM - HR API functions
-import type { Employee, CreateEmployeeInput } from '@qwik/monorepo/shared';
-import { createApiClient } from '@qwik/monorepo/shared';
+import type { Employee, CreateEmployeeInput } from '@qwik/shared';
+import { createApiClient } from '@qwik/shared';
 
 const api = createApiClient();
 

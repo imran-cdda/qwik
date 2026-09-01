@@ -27,7 +27,7 @@
 - [ ] No magic numbers or strings
 - [ ] Functions are small and focused (< 50 lines)
 - [ ] Naming is consistent and descriptive
-- [ ] Package imports use `@qwik/monorepo/*` pattern
+- [ ] Package imports use `@qwik/*` pattern
 
 ### Testing
 - [ ] Tests cover core functionality
@@ -44,6 +44,6 @@
 
 ## Common Issues in This Project
 
-- **Workspace imports**: Don't use `file:` protocol - use `@qwik/monorepo/*` imports
+- **Workspace imports**: Don't use `file:` protocol - use `@qwik/*` imports
 - **Server-side only**: All API calls must use `createApiClient()` - never expose API keys to client
 - **Astro SSR**: Interactive React components need proper client directives

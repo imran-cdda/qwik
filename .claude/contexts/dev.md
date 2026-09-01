@@ -21,7 +21,7 @@
 This is a Bun workspaces monorepo:
 - Root `package.json` defines workspaces (`packages`, `apps/*`)
 - All packages exported via `@qwik/monorepo` with `exports` field
-- Apps import from `@qwik/monorepo/*` not `file:` protocol
+- Apps import from `@qwik/*` not `file:` protocol
 
 ## Commands
 

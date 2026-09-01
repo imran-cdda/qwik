@@ -1,8 +1,8 @@
 // Shared types used across all packages
 export { createApiClient } from './api-client';
 export type { ApiClientConfig } from './api-client';
-export { createProxyHandler, normalizePath, createProxyUrl } from './api-proxy';
-export type { ProxyParams, ProxyRequest } from './api-proxy';
+export { createProxyHandler, encryptJwe, decryptJwe } from './api-proxy';
+export type { ProxyParams, ProxyRequest, ProxyHandlerConfig } from './api-proxy';
 
 export interface ApiResponse<T = unknown> {
   data?: T;
